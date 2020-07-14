@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title style="text-align: center;">Validate Otp Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <img src="assets/images/logoColor.png" class="img-logo">
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">OTP for (9987676545)</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block"  shape="round" (click)="validateOtp()">Validate Otp</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+    <ion-title>Terms And Conditions</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-item>
+    <ul>
+      <li>Once the transaction is successful or failed, an auto generated SMS & Email will be sent on your given Mobile no and Email address. (please also check your spam or Junk mail folder if you are not able to locate in Inbox) A confirmation SMS may be sent to you by your banker too.</li>
+      <li>The Email & SMS will be sent & Seva Booking will be confirmed only when the Payment confirmation is received from your Banker by the Mandal.</li>
+      <li>Payment made once will not be refunded.</li>
+    </ul>
+  </ion-item>
+  <ion-item>
+    <ion-label>Agree to terms and conditions</ion-label>
+    <ion-checkbox slot="start" color="tertiary"></ion-checkbox>
+  </ion-item>
+  <ion-button expand="block" shape="round" color="tertiary" (click)="submitSeva()">Agree to terms and conditions</ion-button>
+
+</ion-content>

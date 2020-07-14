@@ -1,0 +1,15 @@
+.border-primary {
+    border-style: double;
+    border-radius: 5px;
+    border-color: var(--ion-color-primary);
+}
+
+ion-note {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.custom-margins {
+    margin-bottom: 0;
+    margin-top: 5px;
+}

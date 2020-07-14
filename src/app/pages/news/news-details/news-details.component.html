@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>News Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>News Title</ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      <ion-img src="assets/images/logoColor.png"></ion-img>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+    <!-- <ion-item>
+      <ion-buttons class="button-center">
+        <ion-button>
+          <ion-icon name="share-social-outline" (click)="shareNews()"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item> -->
+  </ion-card>
+</ion-content>

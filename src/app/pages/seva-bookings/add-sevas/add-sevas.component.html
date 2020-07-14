@@ -1,0 +1,31 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Seva Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-item>
+    <ion-label required>Seva Name</ion-label>
+    <ion-select value="MH" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="MH">Ratri Pooja</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label required>Seva Quantity</ion-label>
+    <ion-select [value]="1" okText="Okay" cancelText="Dismiss">
+      <ion-select-option *ngFor="let q of quantity" [value]="q">{{q}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label required>Seva Date</ion-label>
+    <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating" required>Seva Amount</ion-label>
+    <ion-input type="text" value="0" disabled></ion-input>
+  </ion-item>
+  <ion-button expand="block" shape="round" color="tertiary" (click)="dismissModal()">Submit</ion-button>
+</ion-content>
