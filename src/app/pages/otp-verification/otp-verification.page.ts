@@ -11,20 +11,20 @@ import { LoadingController, ToastController } from '@ionic/angular';
 })
 export class OtpVerificationPage implements OnInit {
 
-    constructor(private router: Router, 
-        private storage: StorageService, 
-        private loadingController: LoadingController, 
+    constructor(private router: Router,
+        private storage: StorageService,
+        private loadingController: LoadingController,
         private toastCtrl: ToastController) { }
 
     ngOnInit() {
     }
 
     async validateOtp() {
-        const loading = await ProgressUtils.loadingAfterSubmitButton(this.loadingController)
+        const loading = await ProgressUtils.loadingAfterSubmitButton(this.loadingController, "Please wait...", 2000)
         await loading.present()
         await loading.onDidDismiss()
         const toast = await ProgressUtils.displayToast(this.toastCtrl, "Successfully verified OTP")
-        await toast.present()
+        toast.present()
         await this.storage.setToken('token')
         this.router.navigateByUrl('news')
     }

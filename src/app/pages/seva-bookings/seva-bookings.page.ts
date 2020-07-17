@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController, LoadingController, ToastController } from '@ionic/angular';
-import { AddSevasComponent } from './add-sevas/add-sevas.component';
+import { AddSevasComponent } from '../../components/add-sevas/add-sevas.component';
 import { ProgressUtils } from 'src/app/utils/progress-utils';
+import { Router } from '@angular/router';
+import { MemberType, StorageService } from 'src/app/services/storage.service';
+import { SearchMembersComponent } from 'src/app/components/search-members/search-members.component';
+import { MemberDetailsMetaData } from 'src/app/components/member-details/member-details.component';
 
 @Component({
     selector: 'app-seva-bookings',
@@ -10,25 +14,39 @@ import { ProgressUtils } from 'src/app/utils/progress-utils';
 })
 export class SevaBookingsPage implements OnInit {
 
-    constructor(private modalController: ModalController) { }
+    public memberType: MemberType
 
-    ngOnInit() {
+    public memberDetails: MemberDetailsMetaData = new MemberDetailsMetaData()
+
+    constructor(private modalController: ModalController,
+        private router: Router,
+        private storageService: StorageService) { }
+
+    async ngOnInit() {
+        this.memberType = await this.storageService.getMemberType()
     }
 
-    async presentModal() {
-        const modal = await this.modalController.create({
-            component: AddSevasComponent,
-            cssClass: 'my-custom-class'
-        })
-        return await modal.present()
+    isVoluteer(): boolean {
+        if (this.memberType) {
+            return this.memberType === MemberType.VOLUNTEER
+        }
+        return false
     }
 
-    async termsAndConditionsModal() {
+    goToAddSevasPage() {
+        this.router.navigateByUrl('/seva-bookings/add-sevas')
+    }
+
+    async openMemberSearch() {
         const modal = await this.modalController.create({
-            component: TermsAndConditions,
+            component: SearchMembersComponent,
             cssClass: 'my-custom-class'
         })
-        return await modal.present()
+        await modal.present()
+        const details = await modal.onDidDismiss()
+        if (details.data) {
+            this.memberDetails = details.data
+        }
     }
 
 }
@@ -37,25 +55,20 @@ export class SevaBookingsPage implements OnInit {
     selector: 'app-terms-and-condition',
     templateUrl: './terms-and-condition.html'
 })
-export class TermsAndConditions implements OnInit {
-    
-    constructor(private modalController: ModalController, 
+export class TermsAndConditions {
+
+    constructor(private modalController: ModalController,
         private loadingController: LoadingController,
         private toastCtrl: ToastController) { }
 
-    ngOnInit(): void {
-    }
+    @Output()
+    private agreedToTerms: EventEmitter<boolean> = new EventEmitter()
 
     dismissModal() {
         this.modalController.dismiss()
     }
 
-    async submitSeva() {
-        const loading = await ProgressUtils.loadingAfterSubmitButton(this.loadingController)
-        await loading.present()
-        await loading.onDidDismiss()
-        const toast = await ProgressUtils.displayToast(this.toastCtrl, "Redirecting to payment page")
-        toast.present()
-        this.dismissModal()
+    isChecked(event: CustomEvent) {
+        this.agreedToTerms.emit(event.detail.checked)
     }
 }

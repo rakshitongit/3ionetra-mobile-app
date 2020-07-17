@@ -11,23 +11,30 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Mobile Number</ion-label>
-      <ion-input type="number"></ion-input>
+      <ion-input type="number" [(ngModel)]="loginDetails.mobile_number"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Select Temple</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss" interface="action-sheet">
-        <ion-select-option value="brown">Dahisar Shri Kashi Math</ion-select-option>
-        <ion-select-option value="blonde">Walkeshwar Shri Kashi Math</ion-select-option>
-        <ion-select-option value="black">Vashi</ion-select-option>
-        <ion-select-option value="red">Kurla</ion-select-option>
+      <ion-select [(ngModel)]="loginDetails.temple_id" okText="Okay" cancelText="Dismiss" interface="action-sheet">
+        <ion-select-option value="1">Dahisar Shri Kashi Math</ion-select-option>
+        <ion-select-option value="2">Walkeshwar Shri Kashi Math</ion-select-option>
+        <ion-select-option value="3">Vashi</ion-select-option>
+        <ion-select-option value="4">Kurla</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Member Type</ion-label>
+      <ion-select [(ngModel)]="loginDetails.member_type" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="devotee">As a Devotee</ion-select-option>
+        <ion-select-option value="volunteer">As a Volunteer</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-row>
-      <ion-col>
-        <ion-button expand="block" shape="round" (click)="loginWithOtp()">Log In</ion-button>
+      <ion-col size="12">
+        <ion-button expand="block" (click)="loginWithOtp()">Log In</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="block" shape="round" color="tertiary" (click)="gotToRegisterPage()">Register
+        <ion-button expand="block" color="tertiary" (click)="gotToRegisterPage()">Register
         </ion-button>
       </ion-col>
     </ion-row>

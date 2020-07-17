@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-title>Search Members</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">Close</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-list>
+        <ion-item>
+            <ion-label floating required>Mobile number</ion-label>
+            <ion-input type="text"></ion-input>
+            <ion-spinner slot="end" name="dots"></ion-spinner>
+        </ion-item>
+        <ion-item (click)="selectMember()">
+            <ion-label>
+                <h2>Member full Name</h2>
+                <p>9877656540</p>
+                <p>member address member addressmember addressmember addressmember addressmember addressmember addressmember addressmember address</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

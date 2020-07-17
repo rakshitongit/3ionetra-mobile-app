@@ -2,11 +2,11 @@ import { LoadingController, ToastController } from '@ionic/angular';
 
 export class ProgressUtils {
 
-    public static loadingAfterSubmitButton(loadingController: LoadingController) {
+    public static loadingAfterSubmitButton(loadingController: LoadingController, message?: string, duration?: number) {
         return loadingController.create({
-            message: 'Please wait...',
+            message: message ? message : 'Please wait...',
             spinner: "dots",
-            duration: 1000
+            duration
         })
     }
 
@@ -14,7 +14,7 @@ export class ProgressUtils {
         return toastController.create({
             message, 
             animated: true,
-            duration: 2000,
+            duration: 2500,
             buttons: [
                 {
                     text: 'Okay',

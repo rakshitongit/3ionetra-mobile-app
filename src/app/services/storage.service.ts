@@ -19,4 +19,17 @@ export class StorageService {
     removeToken() {
         this.storage.remove('token')
     }
+
+    setMemberType(memberType: MemberType) {
+        return this.storage.set('memberType', memberType)
+    }
+
+    getMemberType(): Promise<MemberType> {
+        return this.storage.get('memberType')
+    }
+}
+
+export enum MemberType {
+    DEVOTEE = "devotee",
+    VOLUNTEER = "volunteer"
 }
