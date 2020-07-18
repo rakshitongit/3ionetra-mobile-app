@@ -1,0 +1,27 @@
+<ion-list *ngIf="addedSevas">
+    <ion-card *ngFor="let seva of addedSevas">
+        <ion-item>
+            <ion-label>
+                <h2>{{seva.sevaName}}</h2>
+                <p>Amount Payable: ₹{{(seva.sevaAmount)}}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label>Select Payment mode</ion-label>
+            <ion-select [(ngModel)]="seva.paymentMode" okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let payment of paymentModeList" [value]="payment">{{payment | titlecase}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+        <span *ngIf="isPaymentModeCheque(seva)">
+            <ion-item>
+                <ion-label position="floating">Cheque No.</ion-label>
+                <ion-input type="text" [(ngModel)]="seva.chequeNumber"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">MICR No.</ion-label>
+                <ion-input type="text" [(ngModel)]="seva.micrNumber"></ion-input>
+            </ion-item>
+        </span>
+    </ion-card>
+</ion-list>

@@ -11,8 +11,11 @@
     <app-terms-and-condition (agreedToTerms)="checkAndEnableButton($event)"></app-terms-and-condition>
     <ion-grid>
         <ion-row>
-            <ion-col>
+            <ion-col size="12">
                 <ion-button [disabled]="isButtonDisabled()" expand="block" color="tertiary" (click)="redirectToPaymentPage()">Book Seva</ion-button>
+            </ion-col>
+            <ion-col size="12" *ngIf="!isDevotee()">
+                <ion-button [disabled]="isButtonDisabled()" expand="block" (click)="bookOnline()">Pay Online</ion-button>
             </ion-col>
         </ion-row>
     </ion-grid>

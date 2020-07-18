@@ -30,8 +30,8 @@ export class AppComponent implements OnInit {
             icon: 'list-circle'
         },
         {
-            title: 'Settings',
-            url: '/folder/Archived',
+            title: 'Booking History',
+            url: '/booking-history',
             icon: 'cog'
         },
         {

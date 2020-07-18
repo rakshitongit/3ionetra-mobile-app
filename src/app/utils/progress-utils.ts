@@ -10,11 +10,11 @@ export class ProgressUtils {
         })
     }
 
-    public static displayToast(toastController: ToastController, message: string, handler?: () => void) {
+    public static displayToast(toastController: ToastController, message: string, duration?: number, handler?: () => void) {
         return toastController.create({
-            message, 
+            message,
             animated: true,
-            duration: 2500,
+            duration: duration ? duration : 2000,
             buttons: [
                 {
                     text: 'Okay',

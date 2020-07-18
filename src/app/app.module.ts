@@ -12,6 +12,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { LoginGuard } from './activation/login-guard.service';
 import { StorageService } from './services/storage.service';
 import { HttpClientModule } from '@angular/common/http';
+import { PaymentModeGuard } from './activation/paymentmode-guard.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         LoginGuard,
-        StorageService
+        StorageService,
+        PaymentModeGuard
     ],
     bootstrap: [AppComponent]
 })

@@ -11,6 +11,8 @@ import { AddSevasComponent } from '../../components/add-sevas/add-sevas.componen
 import { MemberDetailsComponent } from 'src/app/components/member-details/member-details.component';
 import { AddSevaPage } from './add-seva/add-seva.page';
 import { SearchMembersComponent } from 'src/app/components/search-members/search-members.component';
+import { PaymentModePage } from './payment-mode/payment-mode.page';
+import { SelectPaymentModeForSevasComponent } from 'src/app/components/select-payment-mode-for-sevas/select-payment-mode-for-sevas.component';
 
 @NgModule({
     imports: [
@@ -19,6 +21,6 @@ import { SearchMembersComponent } from 'src/app/components/search-members/search
         IonicModule,
         SevaBookingsPageRoutingModule
     ],
-    declarations: [SevaBookingsPage, AddSevasComponent, TermsAndConditions, MemberDetailsComponent, AddSevaPage, SearchMembersComponent]
+    declarations: [SevaBookingsPage, AddSevasComponent, TermsAndConditions, MemberDetailsComponent, AddSevaPage, SearchMembersComponent, PaymentModePage, SelectPaymentModeForSevasComponent]
 })
 export class SevaBookingsPageModule { }

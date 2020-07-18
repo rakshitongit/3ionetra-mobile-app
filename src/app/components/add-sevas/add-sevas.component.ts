@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DateTimeUtils } from 'src/app/utils/web-utils';
+import { PaymentModePage } from 'src/app/pages/seva-bookings/payment-mode/payment-mode.page';
 
 @Component({
     selector: 'app-add-sevas',
@@ -75,4 +76,13 @@ export class SingleSevaMetaData {
     sevaQty: number
     sevaAmount: number
     sevaDate: string
+    paymentMode: PaymentMode
+    chequeNumber: string
+    micrNumber: string
+}
+
+export enum PaymentMode {
+    CASH = "cash",
+    CHEQUE = "cheque",
+    ONLINE = "online"
 }

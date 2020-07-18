@@ -1,7 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController, LoadingController, ToastController } from '@ionic/angular';
-import { AddSevasComponent } from '../../components/add-sevas/add-sevas.component';
-import { ProgressUtils } from 'src/app/utils/progress-utils';
 import { Router } from '@angular/router';
 import { MemberType, StorageService } from 'src/app/services/storage.service';
 import { SearchMembersComponent } from 'src/app/components/search-members/search-members.component';
@@ -24,6 +22,8 @@ export class SevaBookingsPage implements OnInit {
 
     async ngOnInit() {
         this.memberType = await this.storageService.getMemberType()
+        this.storageService.clearBookingHistory()
+        this.memberDetails = new MemberDetailsMetaData()
     }
 
     isVoluteer(): boolean {

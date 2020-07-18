@@ -35,13 +35,22 @@
   </div>
 
   <ion-card button (click)="goToNewsDetails()">
-    <ion-img src="assets/images/logoColor.png"></ion-img>
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/31"></ion-img>
+      </ion-slide>
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/32"></ion-img>
+      </ion-slide>
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/33"></ion-img>
+      </ion-slide>
+    </ion-slides>
     <ion-card-header>
       <ion-card-title>News Title</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      
       This is content, without any paragraph or header tags,
       within an ion-card-content element.
     </ion-card-content>

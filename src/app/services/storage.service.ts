@@ -27,6 +27,18 @@ export class StorageService {
     getMemberType(): Promise<MemberType> {
         return this.storage.get('memberType')
     }
+
+    setBookingHistory() {
+        return this.storage.set('booking-history', true)
+    }
+
+    getBookingHistory() {
+        return this.storage.get('booking-history')
+    }
+
+    clearBookingHistory() {
+        return this.storage.remove('booking-history')
+    }
 }
 
 export enum MemberType {

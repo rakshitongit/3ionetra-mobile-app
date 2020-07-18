@@ -8,6 +8,11 @@ import { Router } from '@angular/router';
 })
 export class NewsPage implements OnInit {
 
+    slideOpts = {
+        initialSlide: 1,
+        speed: 400
+    };
+
     constructor(private router: Router) { }
 
     ngOnInit() {

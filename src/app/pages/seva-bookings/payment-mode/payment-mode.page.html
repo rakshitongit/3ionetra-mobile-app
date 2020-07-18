@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Select Payment for sevas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <app-select-payment-mode-for-sevas [addedSevas]="allSevas" (onValidation)="checkPaymentModesEntered($event)"></app-select-payment-mode-for-sevas>
+
+    <ion-button expand="block" [disabled]="isButtonDisabled" (click)="submitSevas()">Submit Sevas</ion-button>
+</ion-content>
