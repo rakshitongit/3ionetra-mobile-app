@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SingleSevaMetaData, PaymentMode } from '../add-sevas/add-sevas.component';
 import { MemberType, StorageService } from 'src/app/services/storage.service';
+import { SevaTypeName } from 'src/app/services/seva-booking.service';
 
 @Component({
     selector: 'app-select-payment-mode-for-sevas',
@@ -11,6 +12,9 @@ export class SelectPaymentModeForSevasComponent implements OnInit {
 
     @Input()
     addedSevas: SingleSevaMetaData[]
+    
+    @Input()
+    sevaType: SevaTypeName
 
     @Output()
     private onValidation: EventEmitter<boolean> = new EventEmitter()
@@ -51,6 +55,10 @@ export class SelectPaymentModeForSevasComponent implements OnInit {
             }
         }
         return isValid
+    }
+
+    isUtsavSeva(): boolean {
+        return this.sevaType == SevaTypeName.UTSAV_SEVA
     }
 
 }

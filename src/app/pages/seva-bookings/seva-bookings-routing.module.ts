@@ -5,19 +5,20 @@ import { SevaBookingsPage } from './seva-bookings.page';
 import { AddSevaPage } from './add-seva/add-seva.page';
 import { PaymentModePage } from './payment-mode/payment-mode.page';
 import { PaymentModeGuard } from 'src/app/activation/paymentmode-guard.service';
+import { SevaTypeName } from 'src/app/services/seva-booking.service';
 
 const routes: Routes = [
     {
-        path: '',
+        path: ':sevaType',
         component: SevaBookingsPage
     },
     {
-        path: 'add-sevas',
+        path: ':sevaType/add-sevas',
         component: AddSevaPage,
         canActivate: [PaymentModeGuard]
     },
     {
-        path: 'payment-mode',
+        path: ':sevaType/payment-mode',
         component: PaymentModePage,
         canActivate: [PaymentModeGuard]
     }

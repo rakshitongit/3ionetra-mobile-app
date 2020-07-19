@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators'
+import { SevaTypeName } from './services/seva-booking.service';
 
 @Component({
     selector: 'app-root',
@@ -20,9 +21,24 @@ export class AppComponent implements OnInit {
             icon: 'paper-plane'
         },
         {
-            title: 'Seva Booking',
-            url: '/seva-bookings',
+            title: 'Nitya Seva Booking',
+            url: '/seva-bookings/' + SevaTypeName.NITYA_SEVA,
             icon: 'bar-chart'
+        },
+        {
+            title: 'Utsav Seva Booking',
+            url: '/seva-bookings/' + SevaTypeName.UTSAV_SEVA,
+            icon: 'library'
+        },
+        {
+            title: 'Shaswat Seva Booking',
+            url: '/seva-bookings/' + SevaTypeName.SHASWAT_SEVA,
+            icon: 'calendar'
+        },
+        {
+            title: 'Donation',
+            url: '/seva-bookings/' + SevaTypeName.DONATION,
+            icon: 'cash'
         },
         {
             title: 'Seva Details',
@@ -32,7 +48,7 @@ export class AppComponent implements OnInit {
         {
             title: 'Booking History',
             url: '/booking-history',
-            icon: 'cog'
+            icon: 'hourglass'
         },
         {
             title: 'Logout',

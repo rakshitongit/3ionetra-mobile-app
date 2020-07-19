@@ -5,6 +5,7 @@
                 <h2>{{seva.sevaName}}</h2>
                 <p>Amount Payable: ₹{{(seva.sevaAmount)}}</p>
             </ion-label>
+            <ion-note slot="end" *ngIf="isUtsavSeva()">{{seva.utsavName | titlecase}}</ion-note>
         </ion-item>
         <ion-item>
             <ion-label>Select Payment mode</ion-label>

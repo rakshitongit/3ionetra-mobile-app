@@ -3,7 +3,7 @@ import { SingleSevaMetaData } from 'src/app/components/add-sevas/add-sevas.compo
 import { StorageService, MemberType } from 'src/app/services/storage.service';
 import { ProgressUtils } from 'src/app/utils/progress-utils';
 import { LoadingController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SevaBookingService } from 'src/app/services/seva-booking.service';
 
 @Component({
@@ -17,13 +17,17 @@ export class AddSevaPage implements OnInit {
 
     private memberType: MemberType
 
+    public sevatype: string
+
     constructor(private storageService: StorageService,
         private loadingCtrl: LoadingController,
         private toastCtrl: ToastController,
         private router: Router,
-        private bookingService: SevaBookingService) { }
+        private bookingService: SevaBookingService,
+        private route: ActivatedRoute) { }
 
     async ngOnInit() {
+        this.sevatype = this.route.snapshot.paramMap.get("sevaType")
         this.memberType = await this.storageService.getMemberType()
     }
 
@@ -51,7 +55,7 @@ export class AddSevaPage implements OnInit {
             await toast.onDidDismiss()
             this.router.navigate(['/booking-history'])
         } else {
-            this.router.navigate(['/seva-bookings/payment-mode'])
+            this.router.navigate(['/seva-bookings/' + this.sevatype + '/payment-mode'])
         }
     }
 

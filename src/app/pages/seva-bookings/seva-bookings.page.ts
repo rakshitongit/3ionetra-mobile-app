@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController, LoadingController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MemberType, StorageService } from 'src/app/services/storage.service';
 import { SearchMembersComponent } from 'src/app/components/search-members/search-members.component';
 import { MemberDetailsMetaData } from 'src/app/components/member-details/member-details.component';
+import { SevaTypeName } from 'src/app/services/seva-booking.service';
 
 @Component({
     selector: 'app-seva-bookings',
@@ -16,11 +17,16 @@ export class SevaBookingsPage implements OnInit {
 
     public memberDetails: MemberDetailsMetaData = new MemberDetailsMetaData()
 
+    public sevaType: string
+
     constructor(private modalController: ModalController,
         private router: Router,
-        private storageService: StorageService) { }
+        private storageService: StorageService,
+        private route: ActivatedRoute) { }
 
     async ngOnInit() {
+        this.sevaType = this.route.snapshot.paramMap.get("sevaType")
+        console.log(this.sevaType == SevaTypeName.NITYA_SEVA)
         this.memberType = await this.storageService.getMemberType()
         this.storageService.clearBookingHistory()
         this.memberDetails = new MemberDetailsMetaData()
@@ -34,7 +40,7 @@ export class SevaBookingsPage implements OnInit {
     }
 
     goToAddSevasPage() {
-        this.router.navigateByUrl('/seva-bookings/add-sevas')
+        this.router.navigateByUrl('/seva-bookings/' + this.sevaType + '/add-sevas')
     }
 
     async openMemberSearch() {

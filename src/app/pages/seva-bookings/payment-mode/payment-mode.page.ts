@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SingleSevaMetaData } from 'src/app/components/add-sevas/add-sevas.component';
-import { map } from 'rxjs/operators';
 import { SevaBookingService } from 'src/app/services/seva-booking.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ProgressUtils } from 'src/app/utils/progress-utils';
@@ -17,12 +16,16 @@ export class PaymentModePage implements OnInit {
 
     public isButtonDisabled: boolean = true
 
+    public sevaType: string
+
     constructor(private bookingService: SevaBookingService,
         private loadingCtrl: LoadingController,
         private toastCtrl: ToastController,
-        private router: Router) { }
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     async ngOnInit() {
+        this.sevaType = this.route.snapshot.paramMap.get("sevaType")
         this.allSevas = this.bookingService.getAllAddedSevas()
     }
 

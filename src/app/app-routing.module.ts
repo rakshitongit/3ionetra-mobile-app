@@ -39,10 +39,10 @@ const routes: Routes = [
         path: 'seva-details',
         loadChildren: () => import('./pages/seva-details/seva-details.module').then(m => m.SevaDetailsPageModule)
     },
-  {
-    path: 'booking-history',
-    loadChildren: () => import('./pages/booking-history/booking-history.module').then( m => m.BookingHistoryPageModule)
-  }
+    {
+        path: 'booking-history',
+        loadChildren: () => import('./pages/booking-history/booking-history.module').then(m => m.BookingHistoryPageModule)
+    }
 ];
 
 @NgModule({

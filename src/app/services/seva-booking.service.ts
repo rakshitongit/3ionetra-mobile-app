@@ -18,3 +18,14 @@ export class SevaBookingService {
         this._locallyAddedSevas = [...allsevas]
     }
 }
+
+export class SevaType {
+    name: SevaTypeName
+}
+
+export enum SevaTypeName {
+    NITYA_SEVA = 'nitya',
+    UTSAV_SEVA = 'utsav',
+    SHASWAT_SEVA = 'shaswat',
+    DONATION = 'donation'
+}

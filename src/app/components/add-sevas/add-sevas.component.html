@@ -1,64 +1,107 @@
-
-  <ion-item>
-    <ion-label required>Seva Name</ion-label>
-    <ion-select [(ngModel)]="singleSeva.sevaName" value="MH" okText="Okay" cancelText="Dismiss" interface="action-sheet" (ionChange)="updateSevaAmount($event)">
-      <ion-select-option *ngFor="let seva of allSevas" [value]="seva.sevaName">
-        {{seva.sevaName}}
-      </ion-select-option>
+<ion-item *ngIf="isUtsavSeva()">
+    <ion-label required>Select Utsav</ion-label>
+    <ion-select [(ngModel)]="singleSeva.utsavName" okText="Okay" cancelText="Dismiss" interface="action-sheet"
+        (ionChange)="updateDateRange($event)">
+        <ion-select-option *ngFor="let utsav of utsavs" [value]="utsav">
+            {{utsav}}
+        </ion-select-option>
     </ion-select>
-  </ion-item>
-  <ion-item>
+</ion-item>
+<ion-item>
+    <ion-label required>{{sevaType | titlecase}} Seva Name</ion-label>
+    <ion-select [(ngModel)]="singleSeva.sevaName" okText="Okay" cancelText="Dismiss" interface="action-sheet"
+        (ionChange)="updateSevaAmount($event)">
+        <ion-select-option *ngFor="let seva of allSevas" [value]="seva.sevaName">
+            {{seva.sevaName}}
+        </ion-select-option>
+    </ion-select>
+</ion-item>
+<ion-item>
     <ion-label required>Seva Quantity</ion-label>
-    <ion-select [(ngModel)]="singleSeva.sevaQty" [value]="1" okText="Okay" cancelText="Dismiss" (ionChange)="updateSevaAmount($event)">
-      <ion-select-option *ngFor="let q of quantity" [value]="q">{{q}}</ion-select-option>
+    <ion-select [(ngModel)]="singleSeva.sevaQty" [value]="1" okText="Okay" cancelText="Dismiss"
+        (ionChange)="updateSevaAmount($event)">
+        <ion-select-option *ngFor="let q of quantity" [value]="q">{{q}}</ion-select-option>
     </ion-select>
-  </ion-item>
-  <ion-item>
+</ion-item>
+<span *ngIf="isShashwatSeva()">
+    <ion-item>
+        <ion-label required>Select Option</ion-label>
+        <ion-select [(ngModel)]="singleSeva.shashwatSevaType" okText="Okay" cancelText="Dismiss" interface="action-sheet"
+            (ionChange)="updateSevaAmount($event)">
+            <ion-select-option *ngFor="let type of shashwatSevaTypes" [value]="type">{{type}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <span *ngIf="canDisplayTithiPakshaMasa()">
+        <ion-item>
+            <ion-label required>Select Tithi</ion-label>
+            <ion-select [(ngModel)]="singleSeva.tithi" okText="Okay" cancelText="Dismiss" interface="action-sheet">
+                <ion-select-option *ngFor="let type of shashwatSevaTypes" [value]="type">{{type}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label required>Select Paksha</ion-label>
+            <ion-select [(ngModel)]="singleSeva.paksha" okText="Okay" cancelText="Dismiss" interface="action-sheet"
+                (ionChange)="updateSevaAmount($event)">
+                <ion-select-option *ngFor="let type of shashwatSevaTypes" [value]="type">{{type}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label required>Select Masa</ion-label>
+            <ion-select [(ngModel)]="singleSeva.masa" okText="Okay" cancelText="Dismiss" interface="action-sheet"
+                (ionChange)="updateSevaAmount($event)">
+                <ion-select-option *ngFor="let type of shashwatSevaTypes" [value]="type">{{type}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </span>
+</span>
+<ion-item *ngIf="canDisplayDate()">
     <ion-label required>Seva Date</ion-label>
-    <ion-datetime value="2019-10-01T15:43:40.394Z" [yearValues]="yearValues" (ionChange)="updateSevaAmount($event)" [(ngModel)]="singleSeva.sevaDate"></ion-datetime>
-  </ion-item>
-  <ion-item>
+    <ion-datetime value="2019-10-01T15:43:40.394Z" [yearValues]="yearValues" (ionChange)="updateSevaAmount($event)"
+        [(ngModel)]="singleSeva.sevaDate"></ion-datetime>
+</ion-item>
+<ion-item>
     <ion-label position="floating" required>Seva Amount</ion-label>
     <ion-input type="text" value="0" disabled [(ngModel)]="singleSeva.sevaAmount"></ion-input>
-  </ion-item>
-  <ion-item>
+</ion-item>
+<ion-item>
     <ion-label>
-      <ion-button [disabled]="areAllInputsCorrect()" expand="block" color="tertiary" (click)="locallyAddSevas()">Add Seva</ion-button>
-  </ion-label>
-  </ion-item>
+        <ion-button [disabled]="areAllInputsCorrect()" expand="block" color="tertiary" (click)="locallyAddSevas()">Add
+            Seva</ion-button>
+    </ion-label>
+</ion-item>
 
-  <ion-card *ngIf="locallyAddedSevas.length > 0">
+<ion-card *ngIf="locallyAddedSevas.length > 0">
     <ion-card-header>
-      <ion-card-title>
-        <ion-item class="ion-text-center" style="font-weight: bold;">
-          Added Sevas
-          <span slot="end">Delete</span>
-        </ion-item>
-      </ion-card-title>
+        <ion-card-title>
+            <ion-item class="ion-text-center" style="font-weight: bold;">
+                Added Sevas
+                <span slot="end">Delete</span>
+            </ion-item>
+        </ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-list style="padding: 0;">
-        <ion-item-sliding *ngFor="let seva of locallyAddedSevas">
-          <ion-item>
-            <ion-label>
-              <h2>{{seva.sevaName}}</h2>
-              <p>On: {{seva.sevaDate | date}}</p>
-              <ion-note>₹{{seva.sevaAmount}}/- (Qty: {{seva.sevaQty}})</ion-note>
-            </ion-label>
-            <ion-icon slot="end" name="trash" (click)="removeSeva(seva)"></ion-icon>
-          </ion-item>
-          <ion-item-options side="start">
-            <ion-item-option color="tertiary" (click)="removeSeva(seva)">Delete</ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
+        <ion-list style="padding: 0;">
+            <ion-item-sliding *ngFor="let seva of locallyAddedSevas">
+                <ion-item>
+                    <ion-label>
+                        <h2>{{seva.sevaName}}</h2>
+                        <p>On: {{seva.sevaDate | date}}</p>
+                        <ion-note>₹{{seva.sevaAmount}}/- (Qty: {{seva.sevaQty}})</ion-note>
+                    </ion-label>
+                    <ion-icon slot="end" name="trash" (click)="removeSeva(seva)"></ion-icon>
+                </ion-item>
+                <ion-item-options side="start">
+                    <ion-item-option color="tertiary" (click)="removeSeva(seva)">Delete</ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
 
-        <ion-item>
-          <ion-label>
-            <h2>Total Amount:</h2>
-          </ion-label>
-          <ion-note style="font-size: 2.2vh;" slot="end">₹{{getTotalAmount()}}</ion-note>
-        </ion-item>
-      </ion-list>
+            <ion-item>
+                <ion-label>
+                    <h2>Total Amount:</h2>
+                </ion-label>
+                <ion-note style="font-size: 2.2vh;" slot="end">₹{{getTotalAmount()}}</ion-note>
+            </ion-item>
+        </ion-list>
     </ion-card-content>
-  </ion-card>
+</ion-card>

@@ -1,13 +1,13 @@
 <ion-header translucent>
     <ion-toolbar color="primary">
-        <ion-title>Nitya Seva Details</ion-title>
+        <ion-title>{{sevatype | titlecase}} Seva Details</ion-title>
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-    <app-add-sevas (validSevas)="getAddedSevas($event)"></app-add-sevas>
+    <app-add-sevas [sevaType]="sevatype" (validSevas)="getAddedSevas($event)"></app-add-sevas>
     <app-terms-and-condition (agreedToTerms)="checkAndEnableButton($event)"></app-terms-and-condition>
     <ion-grid>
         <ion-row>
