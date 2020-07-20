@@ -26,7 +26,6 @@ export class SevaBookingsPage implements OnInit {
 
     async ngOnInit() {
         this.sevaType = this.route.snapshot.paramMap.get("sevaType")
-        console.log(this.sevaType == SevaTypeName.NITYA_SEVA)
         this.memberType = await this.storageService.getMemberType()
         this.storageService.clearBookingHistory()
         this.memberDetails = new MemberDetailsMetaData()

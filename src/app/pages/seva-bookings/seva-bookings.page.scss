@@ -34,11 +34,6 @@ ion-menu-button {
   margin-bottom: 5px;
 }
 
-ion-label[required]::after {
-    content: " *";
-    color: red;
-}
-
 ion-note {
   font-size: 15px;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { DateTimeUtils } from 'src/app/utils/web-utils';
-import { PaymentModePage } from 'src/app/pages/seva-bookings/payment-mode/payment-mode.page';
-import { SevaType, SevaTypeName } from 'src/app/services/seva-booking.service';
+import { SevaTypeName } from 'src/app/services/seva-booking.service';
 
 @Component({
     selector: 'app-add-sevas',
@@ -22,6 +21,8 @@ export class AddSevasComponent implements OnInit {
 
     allSevas: SingleSevaMetaData[] = []
 
+    donationSevaTypes: string[] = []
+
     utsavs: string[] = []
 
     locallyAddedSevas: SingleSevaMetaData[] = []
@@ -33,6 +34,7 @@ export class AddSevasComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        this.donationSevaTypes = ['General Donation', 'Pooja corpus fund', 'Building Fund', 'Education fund', 'Trust Corpus Fund', 'Kanika / Donation']
         this.utsavs = ['Ganesh Chaturti 2020', 'Vardanti Utsav 2020']
         this.singleSeva.sevaQty = 1
         const singleSeva: SingleSevaMetaData = new SingleSevaMetaData()
@@ -65,7 +67,7 @@ export class AddSevasComponent implements OnInit {
             return false
         }
         if(this.sevaType == SevaTypeName.DONATION) {
-            return false
+            return this.singleSeva.sevaAmount === undefined || this.singleSeva.sevaAmount === undefined
         }
     }
 
@@ -80,6 +82,18 @@ export class AddSevasComponent implements OnInit {
         this.singleSeva.sevaQty = undefined
         this.singleSeva.sevaAmount = undefined
         this.singleSeva.sevaDate = undefined
+        this.singleSeva.shashwatSevaType = undefined
+        this.singleSeva.micrNumber = undefined
+        this.singleSeva.paksha = undefined
+        this.singleSeva.panNumber = undefined
+        this.singleSeva.paymentMode = undefined
+        this.singleSeva.remarks = undefined
+        this.singleSeva.tithi = undefined
+        this.singleSeva.utsavName = undefined
+        this.singleSeva.aadharNumber = undefined
+        this.singleSeva.chequeNumber = undefined
+        this.singleSeva.masa = undefined
+        this.singleSeva.utsavName = undefined
     }
 
     public getTotalAmount(): number {
@@ -113,6 +127,10 @@ export class AddSevasComponent implements OnInit {
         return false
     }
 
+    public isDonationSeva(): boolean {
+        return this.sevaType == SevaTypeName.DONATION
+    }
+
 }
 
 export class SingleSevaMetaData {
@@ -128,6 +146,9 @@ export class SingleSevaMetaData {
     paksha: string
     masa: string
     shashwatSevaType: ShashwatSevaType
+    panNumber: string
+    aadharNumber: string
+    remarks: string
 }
 
 export enum PaymentMode {
