@@ -24,8 +24,21 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "./theme/devotee-variables.scss";
 
 ion-label[required]::after {
     content: " *";
     color: red;
+}
+
+.swiper-pagination {
+    bottom: -10px !important;
+    position: static;
+}
+
+.swiper-pagination-bullet {
+    background: var(--ion-color-warning-contrast);
+}
+.swiper-pagination-bullet-active {
+    background: var(--ion-color-primary);
 }

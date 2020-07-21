@@ -13,6 +13,7 @@ import { LoginGuard } from './activation/login-guard.service';
 import { StorageService } from './services/storage.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PaymentModeGuard } from './activation/paymentmode-guard.service';
+import { AppState } from './services/themes.service';
 
 @NgModule({
     declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { PaymentModeGuard } from './activation/paymentmode-guard.service';
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         LoginGuard,
         StorageService,
-        PaymentModeGuard
+        PaymentModeGuard,
+        AppState
     ],
     bootstrap: [AppComponent]
 })

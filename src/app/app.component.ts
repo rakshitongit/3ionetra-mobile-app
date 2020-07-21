@@ -6,6 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators'
 import { SevaTypeName } from './services/seva-booking.service';
+import { AppState } from './services/themes.service';
+import { StorageService, MemberType } from './services/storage.service';
+import { async } from '@angular/core/testing';
 
 @Component({
     selector: 'app-root',
@@ -62,13 +65,23 @@ export class AppComponent implements OnInit {
         private platform: Platform,
         private splashScreen: SplashScreen,
         private statusBar: StatusBar,
-        private router: Router
+        private router: Router,
+        public global: AppState,
+        private storageService: StorageService
     ) {
         this.initializeApp()
         this.router.events.pipe(
             filter((event: RouterEvent) => event instanceof NavigationEnd),
-        ).subscribe((data) => {
+        ).subscribe(async (data) => {
             this.checkAndUpdateSelectedIndex(data.url)
+            let memberType = await storageService.getMemberType()
+            if (memberType !== null) {
+                if (memberType === MemberType.DEVOTEE) {
+                    this.changeTheme('theme-devotee')
+                } else {
+                    this.changeTheme('theme-volunteer')
+                }
+            }
         })
     }
 
@@ -83,6 +96,10 @@ export class AppComponent implements OnInit {
         if (path !== undefined) {
             this.selectedIndex = this.appPages.findIndex(page => page.url === path)
         }
+    }
+
+    changeTheme(theme: any) {
+        this.global.set('theme', theme);
     }
 
     ngOnInit() {

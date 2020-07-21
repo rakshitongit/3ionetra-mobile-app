@@ -35,7 +35,16 @@
   </div>
 
   <ion-card button (click)="goToNewsDetails()">
-    <ion-slides pager="true" [options]="slideOpts">
+    <ion-slides [pager]="true" [options]="slideOpts">
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/31"></ion-img>
+      </ion-slide>
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/32"></ion-img>
+      </ion-slide>
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/33"></ion-img>
+      </ion-slide>
       <ion-slide>
         <ion-img src="https://cms.3ionetra.in/imageDownload/31"></ion-img>
       </ion-slide>
@@ -51,6 +60,61 @@
     </ion-card-header>
 
     <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card button (click)="goToNewsDetails()">
+    <ion-slides [options]="slideOpts">
+      <ion-slide>
+        <ion-img src="https://cms.3ionetra.in/imageDownload/31"></ion-img>
+      </ion-slide>
+    </ion-slides>
+    <ion-card-header>
+      <ion-card-title>News Title</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card button (click)="goToNewsDetails()">
+    <ion-card-header>
+      <ion-card-title>News Title</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card button (click)="goToNewsDetails()">
+    <ion-card-header>
+      <ion-card-title>
+          News Title
+          <span style="float: right; margin-right: 10px;">
+            <ion-icon name="document" color="tertiary"></ion-icon>
+          </span>        
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
       This is content, without any paragraph or header tags,
       within an ion-card-content element.
     </ion-card-content>
